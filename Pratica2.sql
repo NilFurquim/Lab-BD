@@ -165,8 +165,8 @@ create table pleito(
   quantidade number not null,
   
   constraint pk_pleito primary key (urna, candidatura),
-  constraint fk_pleito_urnaUtil foreign key (urna) references UrnaUtilizada(id),
-  constraint fk_pleito_candidatura foreign key (candidatura) references Candidatura(id)
+  constraint fk_pleito_urnaUtil foreign key (urna) references UrnaUtilizada(id) on delete cascade,
+  constraint fk_pleito_candidatura foreign key (candidatura) references Candidatura(id) on delete cascade
 );
 
 create table Pesquisa(
@@ -184,6 +184,6 @@ create table Intencao(
   quantidade number default 0 not null,
   
   constraint pk_intencao primary key (candidatura, dataInicio, dataFim),
-  constraint fk_intencao_candidatura foreign key (candidatura) references Candidatura(id),
-  constraint fk_intencao_pesquisa foreign key (DataInicio, DataFim) references Pesquisa(DataInicio, DataFim)
+  constraint fk_intencao_candidatura foreign key (candidatura) references Candidatura(id) on delete cascade,
+  constraint fk_intencao_pesquisa foreign key (DataInicio, DataFim) references Pesquisa(DataInicio, DataFim) on delete cascade
 );
